@@ -1,0 +1,241 @@
+/* =========================================
+   1. VARIABLES Y TEMAS (CLARO Y OSCURO)
+========================================= */
+:root {
+    /* DARK MODE (Por defecto) */
+    --color-fondo: #1E2D3D;         
+    --color-tarjetas: #253648;      
+    
+    --color-rosa: #D4317A;          
+    --color-naranja: #E8821A;       
+    --color-violeta: #8B35C7;       
+    
+    --color-texto: #E2E8F0;         
+    --color-titulos: #FFFFFF;       
+    --color-linea: rgba(255, 255, 255, 0.08); /* Línea separadora sutil en modo oscuro */
+    
+    --fuente: 'Inter', -apple-system, sans-serif;
+}
+
+body.light-mode {
+    /* LIGHT MODE (Al apretar el botón) */
+    --color-fondo: #F0F0F0;         
+    --color-tarjetas: #FFFFFF;      
+    --color-texto: #2D3142;         
+    --color-titulos: #1E2D3D;       
+    --color-linea: rgba(0, 0, 0, 0.08); /* Línea separadora sutil en modo claro */
+}
+
+/* =========================================
+   RESETEO Y ESTRUCTURA BÁSICA
+========================================= */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: var(--fuente);
+    color: var(--color-texto);
+    background: var(--color-fondo);
+    line-height: 1.6;
+    transition: background 0.4s ease, color 0.4s ease;
+}
+
+.container { width: 90%; max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+.text-center { text-align: center; }
+.mt-40 { margin-top: 40px; }
+
+/* =========================================
+   2. NAVBAR
+========================================= */
+.navbar {
+    background-color: var(--color-fondo);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid var(--color-linea);
+}
+.nav-container { display: flex; justify-content: space-between; align-items: center; }
+.nav-logo { height: 75px; width: auto; transition: 0.3s; } /* Logo agrandado a 75px */
+.nav-actions { display: flex; align-items: center; gap: 15px; }
+
+.btn-theme {
+    background: transparent;
+    border: 1px solid var(--color-texto);
+    color: var(--color-texto);
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* =========================================
+   3. BOTONES (TODOS CENTRADOS)
+========================================= */
+.center-btn { 
+    display: flex; 
+    justify-content: center; 
+    width: 100%; 
+    margin: 40px 0; 
+}
+
+.btn {
+    display: inline-block;
+    padding: 16px 32px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: 0.3s ease;
+    cursor: pointer;
+    text-align: center;
+}
+.btn-principal, .btn-gigante { 
+    background: linear-gradient(135deg, var(--color-rosa), var(--color-naranja)); 
+    color: #FFFFFF !important;
+    border: none;
+}
+.btn-principal:hover, .btn-gigante:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(232, 130, 26, 0.4); }
+
+.btn-gigante { font-size: 1.2rem; width: 100%; max-width: 600px; margin: 0 auto; }
+.btn-nav { border: 2px solid var(--color-rosa); color: var(--color-rosa); padding: 8px 15px; font-size: 0.8rem; }
+
+/* =========================================
+   4. SECCIONES Y ESTRUCTURA DE TEXTOS
+========================================= */
+section { padding: 80px 0; border-bottom: 1px solid var(--color-linea); }
+.cta-final { border-bottom: none; }
+h1, h2, h3, strong { color: var(--color-titulos); }
+
+.titulo-principal { font-size: 2.4rem; font-weight: 900; margin-bottom: 20px; }
+.titulo-seccion { font-size: 1.9rem; margin-bottom: 30px; font-weight: 800; text-align: center; }
+.subtitulo { font-size: 1.25rem; max-width: 800px; margin: 0 auto 30px; opacity: 0.9; }
+.subtitulo-seccion { font-size: 1.1rem; margin-bottom: 40px; text-align: center; }
+.etiqueta-video { font-weight: bold; color: var(--color-naranja); margin-bottom: 15px; }
+.intro-texto { max-width: 800px; margin: 0 auto 40px; font-size: 1.1rem; }
+.cierre-seccion { font-size: 1.2rem; margin-top: 30px; max-width: 900px; margin-left: auto; margin-right: auto; }
+.texto-grande { font-size: 1.25rem; max-width: 800px; margin: 0 auto 15px auto; line-height: 1.7; }
+.bajada-btn { font-size: 0.95rem; margin-top: 15px; color: var(--color-texto); letter-spacing: 0.5px; opacity: 0.7; }
+
+/* =========================================
+   5. REPRODUCTOR DE VIDEO (16:9 LIQUIDO)
+========================================= */
+.vsl-container { 
+    max-width: 750px; 
+    margin: 40px auto; 
+    background: #000; 
+    border-radius: 12px; 
+    overflow: hidden; 
+    box-shadow: 0 15px 40px rgba(0,0,0,0.5); 
+    position: relative;
+    padding-bottom: 56.25%; /* Mantiene proporción exacta en cualquier pantalla */
+    height: 0;
+}
+.vsl-container iframe { 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    border: none; 
+}
+
+/* =========================================
+   6. GRILLAS SIMÉTRICAS (2 COLUMNAS FIJAS EN PC)
+========================================= */
+.grid-checkboxes, .grid-4, .grid-testimonios-2x2 { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 25px; 
+}
+
+/* BLOQUES COMUNES */
+.card-check, .card-dimension, .paso, .objecion, .card-testimonio {
+    background: var(--color-tarjetas);
+    border-radius: 8px;
+    border: 1px solid var(--color-linea);
+}
+
+/* CARDS ESPECÍFICAS */
+.card-check { padding: 20px; border-left: 4px solid var(--color-rosa); display: flex; align-items: flex-start; }
+.check { color: var(--color-rosa); font-weight: bold; margin-right: 15px; }
+
+.card-dimension { padding: 30px; border-top: 4px solid var(--color-naranja); text-align: center; }
+.card-dimension h3 { margin-bottom: 15px; }
+
+/* HIGHLIGHTS / ALERTAS */
+.highlight { background: rgba(232, 130, 26, 0.1); padding: 20px; border-radius: 8px; border-left: 4px solid var(--color-naranja); font-weight: bold; }
+
+/* =========================================
+   7. AUTORIDAD Y CITA DE DANILO
+========================================= */
+.texto-autoridad { max-width: 800px; margin: 0 auto 40px; font-size: 1.1rem; }
+.texto-autoridad p { margin-bottom: 15px; }
+
+.cita-danilo {
+    margin-top: 30px;
+    padding: 25px;
+    border-left: 4px solid var(--color-rosa);
+    background: rgba(212, 49, 122, 0.05);
+    font-style: italic;
+}
+.cita-danilo p { font-size: 1.3rem; color: var(--color-titulos); margin-bottom: 5px; }
+.cita-danilo span { color: var(--color-naranja); font-weight: bold; font-style: normal; display: block; margin-top: 10px; }
+
+.numeros-gigantes { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 30px; margin-top: 40px; }
+.numero { font-size: 3rem; font-weight: 900; color: var(--color-rosa); display: block; }
+.etiqueta { font-size: 0.9rem; font-weight: bold; text-transform: uppercase; }
+
+/* =========================================
+   8. TIMELINE (PROCESO)
+========================================= */
+.timeline { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+.paso { display: flex; gap: 20px; padding: 25px; border-left: 4px solid var(--color-violeta); align-items: center; }
+.numero-paso { background: var(--color-violeta); color: #FFF; width: 40px; height: 40px; min-width: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: bold; }
+.contenido-paso h3 { margin-bottom: 10px; }
+
+/* =========================================
+   9. TESTIMONIOS (CURSIVA)
+========================================= */
+.card-testimonio { padding: 35px; border-top: 4px solid var(--color-violeta); text-align: center; transition: 0.3s; }
+.card-testimonio:hover { transform: translateY(-5px); }
+.testimonio-header { margin-bottom: 15px; }
+.testimonio-img { width: 70px; height: 70px; border-radius: 50%; object-fit: cover; border: 2px solid var(--color-violeta); }
+.quote { font-style: italic; opacity: 0.95; line-height: 1.7; }
+.card-testimonio h3 { font-size: 1.2rem; margin-bottom: 5px; }
+.card-testimonio .rol { color: var(--color-naranja); font-size: 0.9rem; font-weight: bold; margin-bottom: 15px; }
+
+/* =========================================
+   10. OBJECIONES
+========================================= */
+.lista-objeciones { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px; }
+.objecion { padding: 20px; border-left: 4px solid var(--color-violeta); }
+.pregunta { font-weight: bold; color: var(--color-titulos); margin-bottom: 10px; font-size: 1.1rem; }
+
+/* =========================================
+   11. FOOTER
+========================================= */
+.footer { background: var(--color-tarjetas); padding: 50px 0; border-top: 1px solid var(--color-linea); }
+.footer-container { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+.footer-logo .nav-logo { height: 70px; }
+.footer-social { display: flex; gap: 25px; }
+.social-link { color: var(--color-texto); text-decoration: none; font-weight: bold; transition: 0.3s; }
+.social-link:hover { color: var(--color-naranja); }
+
+/* =========================================
+   12. ANIMACIONES FADE-IN (SCROLL)
+========================================= */
+.fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+/* =========================================
+   13. RESPONSIVE (CELULARES)
+========================================= */
+@media (max-width: 768px) {
+    .grid-checkboxes, .grid-4, .grid-testimonios-2x2 { 
+        grid-template-columns: 1fr; 
+    }
+    .titulo-principal { font-size: 1.6rem; }
+    .nav-logo { height: 50px; } /* Ajuste de logo cómodo para celulares */
+    section { padding: 50px 0; }
+    .numeros-gigantes { flex-direction: column; gap: 20px; }
+}
